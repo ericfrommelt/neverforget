@@ -1,9 +1,19 @@
+var getCurrentTime = new Date();
+var getCurrentSecond = getCurrentTime.getSeconds();
+var setInitialSeconds = document.getElementById('seconds-wrapper');
+var setInitialSecondBars = setInitialSeconds.innerHTML;
+for (var j=1; j<=getCurrentSecond; j++) {
+  var newInitialSecondBar = document.createElement('div');
+  setInitialSeconds.appendChild(newInitialSecondBar);
+}
+
 function runClock() {
 
   var time = new Date();
   var hour = time.getHours();
   var minutes = time.getMinutes();
   var seconds = time.getSeconds();
+  seconds = seconds + 1;
 
   // Hours
   var hoursNode = document.getElementById('hours');
@@ -20,19 +30,21 @@ function runClock() {
   var theSeconds = secondsNode.innerHTML;
   secondsNode.innerHTML = seconds;
 
-  var generateBars = function() {
-    for (var i=0; i<seconds; i++) {
-      var newSecondBar = document.createElement('div');
-      var placeSecondBar = document.getElementById('seconds-bar');
+  // Generate bars for seconds
+
+  var placeSecondBar = document.getElementById('seconds-wrapper');
+  var secondBars = placeSecondBar.innerHTML;
+  var newSecondBar = document.createElement('div');
+
+  // If seconds equal 0 clear all bars
+
+  if (seconds == 1) {
+    placeSecondBar.innerHTML = '<div></div>';
+  } else {
+    for (var i=1; i<=seconds; i++) {
       placeSecondBar.appendChild(newSecondBar);
     }
   }
-
-  setTimeout(generateBars, 1000);
-
-  var secondsPlacement = document.getElementById('seconds-wrapper');
-  var secondsBars = secondsPlacement.innerHTML;
-  secondsBars.innerHTML = generateBars();
 
 
   setTimeout(runClock, 1000);
