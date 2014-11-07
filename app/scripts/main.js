@@ -20,6 +20,21 @@ function runClock() {
   var theSeconds = secondsNode.innerHTML;
   secondsNode.innerHTML = seconds;
 
+  var generateBars = function() {
+    for (var i=0; i<seconds; i++) {
+      var newSecondBar = document.createElement('div');
+      var placeSecondBar = document.getElementById('seconds-bar');
+      placeSecondBar.appendChild(newSecondBar);
+    }
+  }
+
+  setTimeout(generateBars, 1000);
+
+  var secondsPlacement = document.getElementById('seconds-wrapper');
+  var secondsBars = secondsPlacement.innerHTML;
+  secondsBars.innerHTML = generateBars();
+
+
   setTimeout(runClock, 1000);
 
 }
