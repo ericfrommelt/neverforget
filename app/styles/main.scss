@@ -12,9 +12,16 @@ body {
   margin: 0 auto;
 }
 
+.display {
+  font-size: 8em;
+  font-family: "stratum-1-web",sans-serif;
+  font-style: normal;
+  font-weight: 100;
+}
+
 @mixin bars {
   width: 100%;
-  min-height: .5em;
+  min-height: 2px;
   background: #000;
   margin: 5px;
 }
@@ -25,6 +32,11 @@ body {
 }
 
 #minutes-wrapper div {
+  float: left;
+  @include bars;
+}
+
+#hours-wrapper div {
   float: left;
   @include bars;
 }

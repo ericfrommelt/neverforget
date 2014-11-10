@@ -20,6 +20,16 @@ for (var i=1; i<getCurrentMinute; i++) {
   setInitialMinutes.appendChild(newInitialMinuteBar);
 }
 
+// Set initial hours
+var getCurrentHour = getCurrentTime.getHours();
+getCurrentHour = getCurrentHour +1;
+var setInitialHours = document.getElementById('hours-wrapper');
+var setInitialHourBars = setInitialHours.innerHTML;
+for (var i=1; i<getCurrentHour; i++) {
+  var newInitialHourBar = document.createElement('div');
+  setInitialHours.appendChild(newInitialHourBar);
+}
+
 function runClock() {
 
   var time = new Date();
@@ -64,6 +74,15 @@ function runClock() {
 
   if (seconds == 1) {
     placeMinuteBar.appendChild(newMinuteBar);
+  }
+
+  // Generate bars for hours
+  var placeHourBar = document.getElementById('hours-wrapper');
+  var hourBars = placeHourBar.innerHTML;
+  var newHourBar = document.createElement('div');
+
+  if (minutes == 0 && seconds == 1) {
+    placeHourBar.appendChild(newHourBar);
   }
 
   setTimeout(runClock, 1000);

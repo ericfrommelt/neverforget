@@ -12,6 +12,8 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <script src="//use.typekit.net/ayq2sgn.js"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
@@ -23,16 +25,17 @@
 
     <div id="the-time">
       <div class="col1">
-        <div id="hours"></div>
+        <div id="hours" class="display"></div>
+        <div id="hours-wrapper"></div>
       </div>
 
       <div class="col2">
-        <div id="minutes"></div>
+        <div id="minutes" class="display"></div>
         <div id="minutes-wrapper"></div>
       </div>
 
       <div class="col3">
-        <div id="seconds"></div>
+        <div id="seconds" class="display"></div>
         <div id="seconds-wrapper"></div>
       </div>
     </div>
