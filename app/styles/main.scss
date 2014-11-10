@@ -7,9 +7,42 @@ body {
   color: #333;
 }
 
-#seconds-wrapper div {
-  width: 20%;
-  min-height: 1em;
+#the-time {
+  width: 900px;
+  margin: 0 auto;
+}
+
+@mixin bars {
+  width: 100%;
+  min-height: .5em;
   background: #000;
-  margin: 10px;
+  margin: 5px;
+}
+
+#seconds-wrapper div {
+  float: left;
+  @include bars;
+}
+
+#minutes-wrapper div {
+  float: left;
+  @include bars;
+}
+
+@mixin cols {
+  width: 33.333%;
+  display: block;
+  float: left;
+}
+
+.col1 {
+  @include cols;
+}
+
+.col2 {
+  @include cols;
+}
+
+.col3 {
+  @include cols;
 }
