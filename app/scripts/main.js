@@ -30,6 +30,13 @@ for (var i=1; i<getCurrentHour; i++) {
   setInitialHours.appendChild(newInitialHourBar);
 }
 
+function checkTime(i) {
+  if (i < 10) {
+    i = '0' + i;
+  }
+  return i;
+}
+
 function runClock() {
 
   var time = new Date();
@@ -37,16 +44,19 @@ function runClock() {
   var minutes = time.getMinutes();
   var seconds = time.getSeconds();
   seconds = seconds + 1;
+  // Add a zero if time is less than 10
+  seconds = checkTime(seconds);
+  minutes = checkTime(minutes);
 
   // Hours
   var hoursNode = document.getElementById('hours');
   var theHour = hoursNode.innerHTML;
-  hoursNode.innerHTML = hour;
+  hoursNode.innerHTML = hour + ':';
 
   // Minutes
   var minutesNode = document.getElementById('minutes');
   var theMinute = minutesNode.innerHTML;
-  minutesNode.innerHTML = minutes;
+  minutesNode.innerHTML = minutes + ':';
 
   // Seconds
   var secondsNode = document.getElementById('seconds');
