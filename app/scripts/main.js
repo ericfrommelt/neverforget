@@ -32,24 +32,17 @@ for (var i=1; i<getCurrentHour; i++) {
 
 // Load JSON
 function loadJson(callback) {
-  var getEvent;
+  var getEvent = [];
   $.getJSON('scripts/data.json', function(data){
 
-    // var theEvent = [];
-    // for(var i = 0; i < 5; i++) {
-    //   theEvent[i] = theEvent + i;
-    // }
-
-    // getEvent is currently pulling 1 event at a time before passing it on to
-    // storeEvents which gets accessed by the checkClock() function to pull and
-    // display it. Need to figure out a way to loop through all the events in
-    // the json file, create a variable for each and pass along to storeEvents
-    
-    getEvent = data.theEvents[1].eventDetails;
-    if (typeof callback == 'function') {
-      callback(getEvent);
+    // Loop through the events and create callbacks for each
+    for (var i=0; i<=2; i++) {
+      getEvent[i] = data.theEvents[i].eventDetails;
+      // Check if what we're calling is indeed a callback (due to asynch loading)
+      if (typeof callback == 'function') {
+        callback(getEvent[i]);
+      }
     }
-
     console.log('json loaded');
   });
 }
@@ -58,6 +51,7 @@ function loadJson(callback) {
 var storeEvents = [];
 loadJson(function(getEvent){
   storeEvents.push(getEvent);
+  console.log(storeEvents[2]);
 });
 
 // Add zero to numbers less than 10
@@ -129,15 +123,15 @@ function runClock() {
   function checkClock() {
     var contentBox = document.getElementById('content');
 
-    if (hour == 3 && minutes == 30) {
+    if (hour == 5 && minutes == 1) {
       contentBox.innerHTML = storeEvents[0];
-    } else if (hour == 16 && minutes == 41) {
+    } else if (hour == 5 && minutes == 2) {
       contentBox.innerHTML = storeEvents[1];
+    } else if (hour == 5 && minutes == 3) {
+      contentBox.innerHTML = storeEvents[2];
     }
   }
   checkClock();
-  console.log(hour);
-  console.log(minutes);
 
   setTimeout(runClock, 1000);
 }
