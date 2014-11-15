@@ -30,7 +30,38 @@ for (var i=1; i<getCurrentHour; i++) {
   setInitialHours.appendChild(newInitialHourBar);
 }
 
-function checkTime(i) {
+// Load JSON
+function loadJson(callback) {
+  var getEvent;
+  $.getJSON('scripts/data.json', function(data){
+
+    // var theEvent = [];
+    // for(var i = 0; i < 5; i++) {
+    //   theEvent[i] = theEvent + i;
+    // }
+
+    // getEvent is currently pulling 1 event at a time before passing it on to
+    // storeEvents which gets accessed by the checkClock() function to pull and
+    // display it. Need to figure out a way to loop through all the events in
+    // the json file, create a variable for each and pass along to storeEvents
+    
+    getEvent = data.theEvents[1].eventDetails;
+    if (typeof callback == 'function') {
+      callback(getEvent);
+    }
+
+    console.log('json loaded');
+  });
+}
+
+// Push json data to an array
+var storeEvents = [];
+loadJson(function(getEvent){
+  storeEvents.push(getEvent);
+});
+
+// Add zero to numbers less than 10
+function addZero(i) {
   if (i < 10) {
     i = '0' + i;
   }
@@ -45,8 +76,8 @@ function runClock() {
   var seconds = time.getSeconds();
   seconds = seconds + 1;
   // Add a zero if time is less than 10
-  seconds = checkTime(seconds);
-  minutes = checkTime(minutes);
+  seconds = addZero(seconds);
+  minutes = addZero(minutes);
 
   // Hours
   var hoursNode = document.getElementById('hours');
@@ -94,6 +125,19 @@ function runClock() {
   if (minutes == 0 && seconds == 1) {
     placeHourBar.appendChild(newHourBar);
   }
+
+  function checkClock() {
+    var contentBox = document.getElementById('content');
+
+    if (hour == 3 && minutes == 30) {
+      contentBox.innerHTML = storeEvents[0];
+    } else if (hour == 16 && minutes == 41) {
+      contentBox.innerHTML = storeEvents[1];
+    }
+  }
+  checkClock();
+  console.log(hour);
+  console.log(minutes);
 
   setTimeout(runClock, 1000);
 }
