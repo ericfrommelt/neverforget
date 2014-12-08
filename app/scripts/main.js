@@ -32,26 +32,38 @@ for (var i=1; i<getCurrentHour; i++) {
 
 // Load JSON
 function loadJson(callback) {
+  var getTimestamp = [];
   var getEvent = [];
   $.getJSON('scripts/data.json', function(data){
 
     // Loop through the events and create callbacks for each
-    for (var i=0; i<=2; i++) {
-      getEvent[i] = data.theEvents[i].eventDetails;
+    for (var i=0; i<=132; i++) {
+      getTimestamp.push(data.theEvents[i].timestamp);
+      getEvent.push(data.theEvents[i].eventDetails);
       // Check if what we're calling is indeed a callback (due to asynch loading)
-      if (typeof callback == 'function') {
-        callback(getEvent[i]);
-      }
     }
-    console.log('json loaded');
+    if (typeof callback == 'function') {
+      callback(getTimestamp);
+      callback(getEvent);
+    }
+    //console.log('json loaded');
+    // console.log('timestamp0: ' + timestamp[0]);
+    // console.log('getEvent0: ' + getEvent[0]);
   });
 }
 
 // Push json data to an array
 var storeEvents = [];
-loadJson(function(getEvent){
+var storeTimestamps = [];
+
+loadJson(function(getTimestamp) {
+  storeTimestamps.push(getTimestamp);
+  console.log('storeTimestamps: ' + storeTimestamps[0]);
+})
+
+loadJson(function(getEvent) {
   storeEvents.push(getEvent);
-  console.log(storeEvents[2]);
+  console.log('storeEvents: ' + storeEvents[1]);
 });
 
 // Add zero to numbers less than 10
@@ -69,6 +81,11 @@ function runClock() {
   var minutes = time.getMinutes();
   var seconds = time.getSeconds();
   seconds = seconds + 1;
+
+  // Set current time to a string
+  var currentTimeString = hour.toString() + minutes.toString() + seconds.toString();
+  //console.log('currentTime: ' + currentTimeString);
+
   // Add a zero if time is less than 10
   seconds = addZero(seconds);
   minutes = addZero(minutes);
@@ -107,6 +124,11 @@ function runClock() {
   var minuteBars = placeMinuteBar.innerHTML;
   var newMinuteBar = document.createElement('div');
 
+  // If minutes equal 0, clear all bars
+  if (minutes == 0) {
+    placeMinuteBar.innerHTML = '<div></div>';
+  }
+  // If seconds equql 1 add a new minute bar
   if (seconds == 1) {
     placeMinuteBar.appendChild(newMinuteBar);
   }
@@ -122,14 +144,21 @@ function runClock() {
 
   function checkClock() {
     var contentBox = document.getElementById('content');
+    var arrLength;
 
-    if (hour == 5 && minutes == 1) {
-      contentBox.innerHTML = storeEvents[0];
-    } else if (hour == 5 && minutes == 2) {
-      contentBox.innerHTML = storeEvents[1];
-    } else if (hour == 5 && minutes == 3) {
-      contentBox.innerHTML = storeEvents[2];
+    if (typeof storeTimestamps[0] === 'undefined') {
+
+    } else {
+      arrLength = storeTimestamps[0].length;
     }
+
+    for (var i=0; i<arrLength; i++) {
+      if (currentTimeString == storeTimestamps[0][i]) {
+        contentBox.innerHTML = storeEvents[1][i];
+      }
+      //console.log('i: ' + i);
+    }
+
   }
   checkClock();
 

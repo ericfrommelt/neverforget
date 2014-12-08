@@ -1,0 +1,27 @@
+{"theEvents":[
+
+    {
+      "timestamp": "11361",
+      "eventDetails": "6:00: Mohammed Atta travels Colgan Air Flight 5930 from Portland International Jetport in Portland, Maine to Logan International Airport in Boston, Massachusetts, along with Abdulaziz al-Omari."
+    },
+
+    {
+      "timestamp": "11371",
+      "eventDetails": "6:45: Atta and al-Omari arrive at Logan International Airport."
+    },
+
+    {
+      "timestamp": "11381",
+      "eventDetails": "6:52: Marwan al-Shehhi calls Atta from another terminal at Logan to confirm that the plans for the attack are set."
+    },
+
+    {
+      "timestamp": "11391",
+      "eventDetails": "7:35: Atta and al-Omari board American Airlines Flight 11."
+    },
+
+    {
+      "timestamp": "11401",
+      "eventDetails": "7:40: The rest of the Flight 11 hijackers board the airplane."
+    }
+]}
