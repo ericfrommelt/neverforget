@@ -34,7 +34,7 @@ for (var i=1; i<getCurrentHour; i++) {
 function loadJson(callback) {
   var getTimestamp = [];
   var getEvent = [];
-  $.getJSON('scripts/data.json', function(data){
+  $.getJSON('data/data.json', function(data){
 
     // Loop through the events and create callbacks for each
     for (var i=0; i<=132; i++) {
@@ -126,10 +126,11 @@ function runClock() {
 
   // If minutes equal 0, clear all bars
   if (minutes == 0) {
-    placeMinuteBar.innerHTML = '<div></div>';
+    placeMinuteBar.innerHTML = '<span></span>';
   }
   // If seconds equql 1 add a new minute bar
   if (seconds == 1) {
+    placeMinuteBar.innerHTML = '';
     placeMinuteBar.appendChild(newMinuteBar);
   }
 

@@ -12,6 +12,11 @@ body {
   margin: 0 auto;
 }
 
+#time-wrapper {
+  width: 100%;
+  overflow: auto;
+}
+
 .display {
   font-size: 8em;
   font-family: "stratum-1-web",sans-serif;
@@ -19,11 +24,22 @@ body {
   font-weight: 100;
 }
 
+#content {
+  background: #000;
+  color: #FFF;
+  font-size: 1.5em;
+  font-family: "stratum-1-web",sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  padding: 1em;
+  margin: 5px 0;
+}
+
 @mixin bars {
   width: 100%;
   min-height: 2px;
   background: #000;
-  margin: 5px;
+  margin: 5px 0;
 }
 
 #seconds-wrapper div {
@@ -36,14 +52,20 @@ body {
   @include bars;
 }
 
+#minutes-wrapper span {
+  float: left;
+  min-width: 300px;
+  margin: 5px 0;
+}
+
 #hours-wrapper div {
   float: left;
   @include bars;
 }
 
 @mixin cols {
-  width: 33.333%;
   display: block;
+  width: 300px;
   float: left;
 }
 
