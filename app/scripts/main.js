@@ -126,11 +126,10 @@ function runClock() {
 
   // If minutes equal 0, clear all bars
   if (minutes == 0) {
-    placeMinuteBar.innerHTML = '<span></span>';
+    placeMinuteBar.innerHTML = '';
   }
   // If seconds equql 1 add a new minute bar
   if (seconds == 1) {
-    placeMinuteBar.innerHTML = '';
     placeMinuteBar.appendChild(newMinuteBar);
   }
 

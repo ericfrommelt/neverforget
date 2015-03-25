@@ -35,6 +35,11 @@ body {
   margin: 5px 0;
 }
 
+#bars {
+  width: 100%;
+  overflow: auto;
+}
+
 @mixin bars {
   width: 100%;
   min-height: 2px;
@@ -52,12 +57,6 @@ body {
   @include bars;
 }
 
-#minutes-wrapper span {
-  float: left;
-  min-width: 300px;
-  margin: 5px 0;
-}
-
 #hours-wrapper div {
   float: left;
   @include bars;
@@ -66,6 +65,7 @@ body {
 @mixin cols {
   display: block;
   width: 300px;
+  min-height: 1px;
   float: left;
 }
 
